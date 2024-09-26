@@ -13,7 +13,13 @@ class Input(BaseModel):
     features: list
 
 
-md = joblib.load('./api/mlmodel.joblib')
+try:
+    md = joblib.load('./api/mlmodel.joblib')
+except Exception as e:
+    print(f"Error loading with joblib: {e}")
+    with open('./api/mlmodel.joblib', 'rb') as f:
+        md = pickle.load(f)
+
 
 @app.post('/predict')
 
