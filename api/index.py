@@ -3,6 +3,7 @@ import numpy as np
 import joblib
 from pydantic import BaseModel
 from sklearn.datasets import load_iris
+import pickle
 
 
 target_names = load_iris().target_names
