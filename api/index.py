@@ -3,7 +3,7 @@ import numpy as np
 import joblib
 from pydantic import BaseModel
 from sklearn.datasets import load_iris
-import pickle
+
 
 
 target_names = load_iris().target_names
@@ -18,8 +18,7 @@ try:
     md = joblib.load('./api/mlmodel.joblib')
 except Exception as e:
     print(f"Error loading with joblib: {e}")
-    with open('./api/mlmodel.joblib', 'rb') as f:
-        md = pickle.load(f)
+    raise
 
 
 @app.post('/predict')
